@@ -1,6 +1,7 @@
 'use strict';
 import PopUp from './popup.js';
 import Field from './field.js';
+import * as sound from './sound.js';
 
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
@@ -56,7 +57,7 @@ function startGame() {
   showStopButton();
   showTimerandScore();
   startGameTimer();
-  playSound(bgSound);
+  sound.playBackground();
 }
 
 function stopGame() {
@@ -64,20 +65,20 @@ function stopGame() {
   stopGameTimer();
   hideGameButton();
   gameFinishBanner.showWithText('REPLAY❓');
-  playSound(alertSound);
-  stopSound(bgSound);
+  sound.playAlert();
+  sound.stopBackground();
 }
 
 function finishGame(win) {
   started = false;
   hideGameButton();
   if (win) {
-    playSound(winSound);
+    sound.playWin();
   } else {
-    playSound(bugSound);
+    sound.playBug();
   }
   stopGameTimer();
-  stopSound(bgSound);
+  sound.stopBackground();
   gameFinishBanner.showWithText(win ? 'YOU WON !!' : 'YOU LOST :(');
 }
 
@@ -124,15 +125,6 @@ function initGame() {
   score = 0;
   gameScore.innerText = CARROT_COUNT;
   gameField.init();
-}
-
-function playSound(sound) {
-  sound.currentTime = 0;
-  sound.play();
-}
-
-function stopSound(sound) {
-  sound.pause();
 }
 
 function updateScoreBoard() {
