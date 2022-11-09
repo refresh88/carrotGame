@@ -49,6 +49,7 @@ body {
   margin-top: 8px;
   visibility: hidden;
   user-select: none;
+  cursor: auto;
 }
 
 .game__score {
@@ -64,6 +65,7 @@ body {
   line-height: 50px;
   visibility: hidden;
   user-select: none;
+  cursor: auto;
 }
 
 .game__field {
